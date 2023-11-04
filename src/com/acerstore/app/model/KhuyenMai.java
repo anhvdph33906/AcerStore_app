@@ -11,24 +11,25 @@ import java.util.Date;
  * @author Admin
  */
 public class KhuyenMai {
-    private String maKM, tenKM;
-    private Date thoiGianBatDau, thoiGianKetThuc;
+    private String maKM, tenKM, kieuKM;
     private double triGia;
-    private String kieuKM;
+    private Date thoiGianBatDau, thoiGianKetThuc;
     private boolean trangThai;
 
     public KhuyenMai() {
     }
 
-    public KhuyenMai(String maKM, String tenKM, Date thoiGianBatDau, Date thoiGianKetThuc, double triGia, String kieuKM, boolean trangThai) {
+    public KhuyenMai(String maKM, String tenKM, String kieuKM, double triGia, Date thoiGianBatDau, Date thoiGianKetThuc, boolean trangThai) {
         this.maKM = maKM;
         this.tenKM = tenKM;
+        this.kieuKM = kieuKM;
+        this.triGia = triGia;
         this.thoiGianBatDau = thoiGianBatDau;
         this.thoiGianKetThuc = thoiGianKetThuc;
-        this.triGia = triGia;
-        this.kieuKM = kieuKM;
         this.trangThai = trangThai;
     }
+
+    
 
     public String getMaKM() {
         return maKM;
@@ -88,7 +89,9 @@ public class KhuyenMai {
 
     @Override
     public String toString() {
-        return "KhuyenMai{" + "maKM=" + maKM + ", tenKM=" + tenKM + ", thoiGianBatDau=" + thoiGianBatDau + ", thoiGianKetThuc=" + thoiGianKetThuc + ", triGia=" + triGia + ", kieuKM=" + kieuKM + ", trangThai=" + trangThai + '}';
+        return "KhuyenMai{" + "maKM=" + maKM + ", tenKM=" + tenKM + ", kieuKM=" + kieuKM + ", triGia=" + triGia + ", thoiGianBatDau=" + thoiGianBatDau + ", thoiGianKetThuc=" + thoiGianKetThuc + ", trangThai=" + trangThai + '}';
     }
+
+    
     
 }
