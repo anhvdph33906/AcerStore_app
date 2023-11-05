@@ -29,8 +29,6 @@ public class KhuyenMai {
         this.trangThai = trangThai;
     }
 
-    
-
     public String getMaKM() {
         return maKM;
     }

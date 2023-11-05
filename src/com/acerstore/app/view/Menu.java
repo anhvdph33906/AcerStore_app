@@ -1,5 +1,6 @@
 package com.acerstore.app.view;
 
+import com.acerstore.app.controller.XDate;
 import com.acerstore.app.dao.KhuyenMaiDAO;
 import com.acerstore.app.model.KhuyenMai;
 import java.awt.Color;
@@ -21,6 +22,7 @@ public class Menu extends javax.swing.JFrame {
     public Menu() {
         initComponents();
         this.setLocationRelativeTo(null);
+        this.fillTableKhuyenMai();
     }
 
     /**
@@ -883,7 +885,7 @@ public class Menu extends javax.swing.JFrame {
                             .addGroup(jPanel4Layout.createSequentialGroup()
                                 .addGap(86, 86, 86)
                                 .addComponent(btnCapNhatKhuyenMai)))))
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1021,7 +1023,7 @@ public class Menu extends javax.swing.JFrame {
                                         .addComponent(btnTimSanPham)))
                                 .addGap(18, 18, 18)
                                 .addComponent(ckbTatCa)))
-                        .addGap(0, 24, Short.MAX_VALUE))
+                        .addGap(0, 45, Short.MAX_VALUE))
                     .addComponent(jScrollPane5))
                 .addContainerGap())
         );
@@ -1029,10 +1031,11 @@ public class Menu extends javax.swing.JFrame {
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel25)
-                    .addComponent(jLabel27)
-                    .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel25)
+                        .addComponent(jLabel27)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtTim, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1256,7 +1259,6 @@ public class Menu extends javax.swing.JFrame {
 
     private void tblKhuyenMaiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblKhuyenMaiMouseClicked
         // TODO add your handling code here:
-        
     }//GEN-LAST:event_tblKhuyenMaiMouseClicked
 
     private void btnCapNhatKhuyenMaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCapNhatKhuyenMaiActionPerformed
@@ -1646,27 +1648,15 @@ public class Menu extends javax.swing.JFrame {
                     km.getTenKM(),
                     km.getKieuKM(),
                     km.getTriGia(),
-                    km.getThoiGianBatDau(),
-                    km.getThoiGianKetThuc(),
+                    XDate.toString(km.getThoiGianBatDau(), "dd-MM-yyyy"),
+                    XDate.toString(km.getThoiGianKetThuc(), "dd-MM-yyyy"),
                     km.isTrangThai() ? "Đang áp dụng" : "Ngừng áp dụng"
                 };
                 model.addRow(row);
             }
         } catch (Exception e) {
+            e.printStackTrace();
             JOptionPane.showMessageDialog(this, "Lỗi");
-        }
-    }
-    
-    void edit(){
-        try {
-            String maKM = (String) tblKhuyenMai.getValueAt(this.rows, 0);
-            KhuyenMai model = dao.selectById(maKM);
-            if(model != null){
-                SetFormKhuyenMai(model);
-            }else{
-                JOptionPane.showMessageDialog(this, "Lỗi");
-            }
-        } catch (Exception e) {
         }
     }
 
@@ -1675,24 +1665,27 @@ public class Menu extends javax.swing.JFrame {
         txtTenKM.setText(km.getTenKM());
         cboKieuKM.setSelectedItem(km.getKieuKM());
         txtGia.setText(String.valueOf(km.getTriGia()));
-        txtBatDau.setText(String.valueOf(km.getThoiGianBatDau()));
-        txtKetThuc.setText(String.valueOf(km.getThoiGianKetThuc()));
-        cboTrangthai.setSelectedItem(km.isTrangThai());
+        txtBatDau.setText(XDate.toString(km.getThoiGianBatDau(), "dd-MM-yyyy"));
+        txtKetThuc.setText(XDate.toString(km.getThoiGianKetThuc(), "dd-MM-yyyy"));
+        cboTrangthai.setSelectedItem(km.isTrangThai()?"Đang áp dụng":"Ngừng áp dụng");
+    }
+    
+    void edit(){
+        String maKM = (String) tblKhuyenMai.getValueAt(this.rows, 0);
+        KhuyenMai km = dao.selectById(maKM);
+        this.SetFormKhuyenMai(km);
     }
 
     KhuyenMai getFormKhuyenMai() {
-        String ma = txtMaKM.getText();
-        String ten = txtTenKM.getText();
-        String KieuKM = (String) cboKieuKM.getSelectedItem();
-        double gia = Double.parseDouble(txtGia.getText());
-        Date date = new Date();
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-        String Date = dateFormat.format(date);
-        Date = txtBatDau.getText();
-        Date = txtKetThuc.getText();
-        String thai = String.valueOf(cboTrangthai.getSelectedItem());
-        boolean trangthai = Boolean.valueOf(thai);
-        return new KhuyenMai(ma, ten, KieuKM, gia, date, date, trangthai);
+        KhuyenMai km = new KhuyenMai();
+        km.setMaKM(txtMaKM.getText());
+        km.setTenKM(txtTenKM.getText());
+        km.setKieuKM(String.valueOf(cboKieuKM.getSelectedItem()));
+        km.setTriGia(Double.parseDouble(txtGia.getText()));
+        km.setThoiGianBatDau(XDate.toDate(txtBatDau.getText(), "dd-MM-yyyy"));
+        km.setThoiGianKetThuc(XDate.toDate(txtKetThuc.getText(), "dd-MM-yyyy"));
+        km.setTrangThai(Boolean.parseBoolean((String) cboTrangthai.getSelectedItem()));
+        return km;
     }
 
     void ClearForm() {
@@ -1706,13 +1699,14 @@ public class Menu extends javax.swing.JFrame {
     }
 
     void insert() {
-        KhuyenMai nv = getFormKhuyenMai();
+        KhuyenMai km = getFormKhuyenMai();
         try {
-            dao.insert(nv);
+            dao.insert(km);
             this.fillTableKhuyenMai();
             this.ClearForm();
             JOptionPane.showMessageDialog(this, "Thêm mới khuyến mãi thành công!");
         } catch (Exception e) {
+            e.printStackTrace();
             JOptionPane.showMessageDialog(this, "Thêm mới khuyến mãi thất bại!");
         }
     }
@@ -1724,6 +1718,7 @@ public class Menu extends javax.swing.JFrame {
             this.fillTableKhuyenMai();
             JOptionPane.showMessageDialog(this, "Cập nhật thành công!");
         } catch (Exception e) {
+            e.printStackTrace();
             JOptionPane.showMessageDialog(this, "Cập nhật thất bại!");
         }
     }

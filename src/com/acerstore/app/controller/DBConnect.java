@@ -1,19 +1,16 @@
 package com.acerstore.app.controller;
 
 import java.sql.Connection;
-import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import java.sql.*;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class DBConnect {
 private static String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
     private static String dburl="jdbc:sqlserver://localhost\\DESKTOP-HGOU1M7\\SQLEXPRESS:1433;databaseName=AcerStore;encrypt=true;trustServerCertificate=true;";
     private static String user="sa";
-    private static String pass="123123";
+    private static String pass="123123123";
      
     static{
         try {
@@ -23,52 +20,43 @@ private static String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
         } 
     }
     
-    public static PreparedStatement getStmt(String sql, Object... args) throws SQLException{
-        Connection con = DriverManager.getConnection(dburl, user, pass);
-        PreparedStatement ps = null;
-        if(sql.trim().startsWith("{")){
-            ps = con.prepareCall(sql);
-        }else{
-            ps = con.prepareStatement(sql);
+    public static PreparedStatement preparedStatement(String sql, Object... args) throws SQLException {
+        Connection conn = DriverManager.getConnection(dburl, user, pass);
+        PreparedStatement pstmt = null;
+        if (sql.trim().startsWith("{")) {
+            pstmt = conn.prepareCall(sql); //proc
+        } else {
+            pstmt = conn.prepareStatement(sql); //SQL
         }
-        for(int i = 0; i< args.length; i++){
-            ps.setObject(i + 1, args[i]);
+        for (int i = 0; i < args.length; i++) {
+            pstmt.setObject(i + 1, args[i]);
         }
-        return ps;
+        return pstmt;
     }
-    
-    public static int update(String sql, Object... args){
+
+    public static ResultSet executeQuery(String sql, Object... args) {
         try {
-            PreparedStatement ps = getStmt(sql, args);
+            PreparedStatement pstmt = preparedStatement(sql, args);
             try {
-                return ps.executeUpdate();
+                return pstmt.executeQuery();
             } finally {
-                ps.getConnection().close();
+
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
-    
-    public static ResultSet querry(String sql, Object... args){
+
+    public static void executeUpdate(String sql, Object... args) {
         try {
-            PreparedStatement ps = getStmt(sql, args);
-            return ps.executeQuery();
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-    }
-    
-    public static Object value(String sql, Object... args){
-        try {
-            ResultSet rs = querry(sql, args);
-            if(rs.next()){
-                return rs.getObject(0);
+            PreparedStatement pstmt = preparedStatement(sql, args);
+            try {
+                pstmt.executeUpdate();
+            } finally {
+                pstmt.getConnection().close();
             }
-            rs.getStatement().getConnection().close();
-        } catch (Exception e) {
+        } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        return null;
     }
 }

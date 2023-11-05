@@ -16,20 +16,19 @@ import java.util.List;
  */
 public class KhuyenMaiDAO extends AcerDAO<KhuyenMai, String>{
     
-    final String INSERT_SQL = "insert into KhuyenMai(MaKM, TenKM, KieuKM, TriGia, TGBD, TGKT, TrangThai) values (?,?,?,?,?,?,?)";
+    final String INSERT_SQL = "insert into Khuyenmai(MaKM, TenKM, KieuKM, TriGia, TGBD, TGKT, TrangThai) values (?,?,?,?,?,?,?)";
     final String UPDATE_SQL = "update KhuyenMai set TenKM = ?, KieuKM = ?, TriGia = ?, TGBD = ?, TGKT = ?, TrangThai = ? where MaKM = ?";
-    final String SELECT_ALL_SQL = "select * from KhuyeMai";
+    final String SELECT_ALL_SQL = "select * from KhuyenMai";
     final String SELECT_BY_ID_SQL = "select * from KhuyenMai where MaKM = ?";
-    final String SELECT_BY_NAME_SQL = "select * from KhuyenMai where TenKM like ?";
 
     @Override
     public void insert(KhuyenMai entity) {
-        DBConnect.update(INSERT_SQL, entity.getMaKM(), entity.getTenKM(), entity.getKieuKM(), entity.getTriGia(), entity.getThoiGianBatDau(), entity.getThoiGianKetThuc(), entity.isTrangThai());
+        DBConnect.executeUpdate(INSERT_SQL, entity.getMaKM(), entity.getTenKM(), entity.getKieuKM(), entity.getTriGia(), entity.getThoiGianBatDau(), entity.getThoiGianKetThuc(), entity.isTrangThai());
     }
 
     @Override
     public void update(KhuyenMai entity) {
-        DBConnect.update(UPDATE_SQL, entity.getTenKM(), entity.getKieuKM(), entity.getTriGia(), entity.getThoiGianBatDau(), entity.getThoiGianKetThuc(), entity.isTrangThai(), entity.getMaKM());
+        DBConnect.executeUpdate(UPDATE_SQL, entity.getTenKM(), entity.getKieuKM(), entity.getTriGia(), entity.getThoiGianBatDau(), entity.getThoiGianKetThuc(), entity.isTrangThai(), entity.getMaKM());
     }
 
     @Override
@@ -55,7 +54,7 @@ public class KhuyenMaiDAO extends AcerDAO<KhuyenMai, String>{
     public List<KhuyenMai> selectBySql(String sql, Object... args) {
         List<KhuyenMai> list = new ArrayList();
         try {
-            ResultSet rs = DBConnect.querry(sql, args);
+            ResultSet rs = DBConnect.executeQuery(sql, args);
             while(rs.next()){
                 KhuyenMai entity = new KhuyenMai();
                 entity.setMaKM(rs.getString("MaKM"));
@@ -71,15 +70,5 @@ public class KhuyenMaiDAO extends AcerDAO<KhuyenMai, String>{
             throw new RuntimeException(e);
         }
         return list;
-    }
-
-    @Override
-    public KhuyenMai selectByName(String name) {
-        List<KhuyenMai> list = selectBySql(SELECT_BY_NAME_SQL, name);
-        if(list.isEmpty()){
-            return null;
-        }
-        return list.get(0);
-    }
-    
+    }  
 }

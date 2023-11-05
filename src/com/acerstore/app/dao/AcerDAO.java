@@ -16,7 +16,6 @@ public abstract class AcerDAO<EntityType, KeyType>{
     public abstract void delete(KeyType id);
     public abstract List<EntityType> selectAll();
     public abstract EntityType selectById(KeyType id);
-    public abstract EntityType selectByName(KeyType name);
     public abstract List<EntityType> selectBySql(String sql, Object...args);
 }
     
