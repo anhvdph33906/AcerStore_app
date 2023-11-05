@@ -922,14 +922,40 @@ public class Menu extends javax.swing.JFrame {
         jLabel27.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel27.setText("Trạng thái");
 
+        txtTim.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtTimKeyReleased(evt);
+            }
+        });
+
         btnTimKiemKhuyenMai.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnTimKiemKhuyenMai.setText("Tìm kiếm");
+        btnTimKiemKhuyenMai.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTimKiemKhuyenMaiActionPerformed(evt);
+            }
+        });
 
         cboLoaiKM.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "%", "Tiền" }));
         cboLoaiKM.setSelectedIndex(-1);
+        cboLoaiKM.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                cboLoaiKMKeyReleased(evt);
+            }
+        });
 
         cboTrangThai2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Đang áp dụng", "Ngừng áp dụng" }));
         cboTrangThai2.setSelectedIndex(-1);
+        cboTrangThai2.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cboTrangThai2ItemStateChanged(evt);
+            }
+        });
+        cboTrangThai2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                cboTrangThai2KeyReleased(evt);
+            }
+        });
 
         tblKhuyenMai.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -1257,6 +1283,37 @@ public class Menu extends javax.swing.JFrame {
     private void tblKhuyenMaiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblKhuyenMaiMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_tblKhuyenMaiMouseClicked
+
+    private void txtTimKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTimKeyReleased
+        // TODO add your handling code here:
+//        this.Search();
+    }//GEN-LAST:event_txtTimKeyReleased
+
+    private void btnTimKiemKhuyenMaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimKiemKhuyenMaiActionPerformed
+        // TODO add your handling code here:
+        this.Search();
+    }//GEN-LAST:event_btnTimKiemKhuyenMaiActionPerformed
+
+    private void cboLoaiKMKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cboLoaiKMKeyReleased
+        // TODO add your handling code here:
+        Search();
+    }//GEN-LAST:event_cboLoaiKMKeyReleased
+
+    private void cboTrangThai2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cboTrangThai2KeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cboTrangThai2KeyReleased
+
+    private void cboTrangThai2ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cboTrangThai2ItemStateChanged
+        // TODO add your handling code here:
+        String Status = (String) cboTrangThai2.getSelectedItem();
+        boolean SearchTrue = Status.equals("Đang áp dụng");
+        if(SearchTrue){
+            this.Search2();
+        }
+        else{
+            this.Search2();
+        }
+    }//GEN-LAST:event_cboTrangThai2ItemStateChanged
 
     /**
      * @param args the command line arguments
@@ -1625,7 +1682,32 @@ public class Menu extends javax.swing.JFrame {
         model = (DefaultTableModel) tblKhuyenMai.getModel();
         model.setRowCount(0);
         try {
-            List<KhuyenMai> list = dao.selectAll();
+            String keyword = txtTim.getText();
+            List<KhuyenMai> list = dao.selectByKeyword(keyword);
+            for (KhuyenMai km : list) {
+                Object[] row = {
+                    km.getMaKM(),
+                    km.getTenKM(),
+                    km.getKieuKM(),
+                    km.getTriGia(),
+                    km.getThoiGianBatDau(),
+                    km.getThoiGianKetThuc(),
+                    km.isTrangThai() ? "Đang áp dụng" : "Ngừng áp dụng"
+                };
+                model.addRow(row);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Lỗi");
+        }
+    }
+    
+    public void fillTableKhuyenMai2() {
+        model = (DefaultTableModel) tblKhuyenMai.getModel();
+        model.setRowCount(0);
+        try {
+            String keyword = (String) cboTrangThai2.getSelectedItem();
+            List<KhuyenMai> list = dao.selectByStatus(keyword);
             for (KhuyenMai km : list) {
                 Object[] row = {
                     km.getMaKM(),
@@ -1724,6 +1806,18 @@ public class Menu extends javax.swing.JFrame {
         txtGia.setText("");
         dcsBatDau.setDate(null);
         dcsKetThuc.setDate(null);
+    }
+    
+    void Search(){
+        this.fillTableKhuyenMai();
+        this.ClearForm();
+        this.rows = -1;
+    }
+    
+    void Search2(){
+        this.fillTableKhuyenMai2();
+        this.ClearForm();
+        this.rows = -1;
     }
 
     void insert() {
