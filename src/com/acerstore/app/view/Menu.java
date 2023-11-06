@@ -3,6 +3,8 @@ package com.acerstore.app.view;
 import com.acerstore.app.dao.KhuyenMaiDAO;
 import com.acerstore.app.model.KhuyenMai;
 import java.awt.Color;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -15,8 +17,23 @@ public class Menu extends javax.swing.JFrame {
     
     public Menu() {
         initComponents();
+        startClock();
         this.setLocationRelativeTo(null);
-        this.fillTableKhuyenMai();
+        this.fillTableKhuyenMai(null);
+    }
+    
+    void startClock() {
+        class TimeClock extends Thread {
+
+            @Override
+            public void run() {
+                while (true) {
+                    lblClock.setText(new SimpleDateFormat("hh:mm:ss a").format(Calendar.getInstance().getTime()));
+                }
+            }
+        }
+        TimeClock timeClock = new TimeClock();
+        timeClock.start();
     }
 
     /**
@@ -117,12 +134,8 @@ public class Menu extends javax.swing.JFrame {
         dcsKetThuc = new com.toedter.calendar.JDateChooser();
         jPanel7 = new javax.swing.JPanel();
         jLabel26 = new javax.swing.JLabel();
-        jLabel27 = new javax.swing.JLabel();
-        jLabel28 = new javax.swing.JLabel();
         txtTim = new javax.swing.JTextField();
         btnTimKiemKhuyenMai = new javax.swing.JButton();
-        cboLoaiKM = new javax.swing.JComboBox<>();
-        cboTrangThai2 = new javax.swing.JComboBox<>();
         jScrollPane5 = new javax.swing.JScrollPane();
         tblKhuyenMai = new javax.swing.JTable();
         jLabel29 = new javax.swing.JLabel();
@@ -132,6 +145,7 @@ public class Menu extends javax.swing.JFrame {
         jScrollPane6 = new javax.swing.JScrollPane();
         jTable4 = new javax.swing.JTable();
         pnlDoiCa = new javax.swing.JPanel();
+        lblClock = new javax.swing.JLabel();
         mnuBar = new javax.swing.JMenuBar();
         mnuHeThong = new javax.swing.JMenu();
         mnuItemDangXuat = new javax.swing.JMenuItem();
@@ -924,7 +938,7 @@ public class Menu extends javax.swing.JFrame {
                             .addComponent(txtGia, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(cboKieuKM, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(dcsBatDau, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(12, Short.MAX_VALUE))
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(61, 61, 61)
                 .addComponent(btnThemKhuyenMai)
@@ -973,12 +987,6 @@ public class Menu extends javax.swing.JFrame {
         jLabel26.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel26.setText("Tìm khuyến mãi");
 
-        jLabel27.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel27.setText("Loại Khuyến mãi");
-
-        jLabel28.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel28.setText("Trạng thái");
-
         txtTim.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtTimKeyReleased(evt);
@@ -990,27 +998,6 @@ public class Menu extends javax.swing.JFrame {
         btnTimKiemKhuyenMai.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnTimKiemKhuyenMaiActionPerformed(evt);
-            }
-        });
-
-        cboLoaiKM.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "%", "Tiền" }));
-        cboLoaiKM.setSelectedIndex(-1);
-        cboLoaiKM.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                cboLoaiKMKeyReleased(evt);
-            }
-        });
-
-        cboTrangThai2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Đang áp dụng", "Ngừng áp dụng" }));
-        cboTrangThai2.setSelectedIndex(-1);
-        cboTrangThai2.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                cboTrangThai2ItemStateChanged(evt);
-            }
-        });
-        cboTrangThai2.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                cboTrangThai2KeyReleased(evt);
             }
         });
 
@@ -1063,24 +1050,14 @@ public class Menu extends javax.swing.JFrame {
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane5)
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 581, Short.MAX_VALUE)
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel7Layout.createSequentialGroup()
-                                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel7Layout.createSequentialGroup()
-                                        .addComponent(txtTim, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(btnTimKiemKhuyenMai))
-                                    .addComponent(jLabel26))
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jLabel27, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(cboLoaiKM, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(52, 52, 52)
-                                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel28)
-                                    .addComponent(cboTrangThai2, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(txtTim, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnTimKiemKhuyenMai))
+                            .addComponent(jLabel26)
                             .addGroup(jPanel7Layout.createSequentialGroup()
                                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel29)
@@ -1090,7 +1067,7 @@ public class Menu extends javax.swing.JFrame {
                                         .addComponent(btnTimSanPham)))
                                 .addGap(18, 18, 18)
                                 .addComponent(ckbTatCa)))
-                        .addGap(0, 45, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(jScrollPane6))
                 .addContainerGap())
         );
@@ -1098,17 +1075,11 @@ public class Menu extends javax.swing.JFrame {
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel26)
-                        .addComponent(jLabel28)))
+                .addComponent(jLabel26)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtTim, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnTimKiemKhuyenMai)
-                    .addComponent(cboLoaiKM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cboTrangThai2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnTimKiemKhuyenMai))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -1128,10 +1099,9 @@ public class Menu extends javax.swing.JFrame {
         pnlKhuyenMaiLayout.setHorizontalGroup(
             pnlKhuyenMaiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlKhuyenMaiLayout.createSequentialGroup()
-                .addContainerGap()
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         pnlKhuyenMaiLayout.setVerticalGroup(
             pnlKhuyenMaiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1157,6 +1127,9 @@ public class Menu extends javax.swing.JFrame {
 
         pnlContainer.add(pnlDoiCa, "card10");
 
+        lblClock.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblClock.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/acerstore/app/icon/clock.png"))); // NOI18N
+
         javax.swing.GroupLayout pnlMenuLayout = new javax.swing.GroupLayout(pnlMenu);
         pnlMenu.setLayout(pnlMenuLayout);
         pnlMenuLayout.setHorizontalGroup(
@@ -1164,15 +1137,21 @@ public class Menu extends javax.swing.JFrame {
             .addGroup(pnlMenuLayout.createSequentialGroup()
                 .addComponent(pnlSlideMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(pnlContainer, javax.swing.GroupLayout.PREFERRED_SIZE, 1030, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(pnlContainer, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 1030, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlMenuLayout.createSequentialGroup()
+                        .addComponent(lblClock, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
         );
         pnlMenuLayout.setVerticalGroup(
             pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlMenuLayout.createSequentialGroup()
-                .addGroup(pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(pnlSlideMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 775, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlMenuLayout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap()
+                        .addComponent(lblClock)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(pnlContainer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
@@ -1225,7 +1204,7 @@ public class Menu extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlMenu, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1238, Short.MAX_VALUE)
+            .addComponent(pnlMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 1238, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1321,20 +1300,6 @@ public class Menu extends javax.swing.JFrame {
         this.Search();
     }//GEN-LAST:event_btnTimKiemKhuyenMaiActionPerformed
 
-    private void cboLoaiKMKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cboLoaiKMKeyReleased
-        // TODO add your handling code here:
-        Search();
-    }//GEN-LAST:event_cboLoaiKMKeyReleased
-
-    private void cboTrangThai2ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cboTrangThai2ItemStateChanged
-        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_cboTrangThai2ItemStateChanged
-
-    private void cboTrangThai2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cboTrangThai2KeyReleased
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cboTrangThai2KeyReleased
-
     private void tblKhuyenMaiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblKhuyenMaiMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_tblKhuyenMaiMouseClicked
@@ -1391,9 +1356,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JButton btnTimSanPham;
     private javax.swing.JComboBox<String> cboDanhMuc;
     private javax.swing.JComboBox<String> cboKieuKM;
-    private javax.swing.JComboBox<String> cboLoaiKM;
     private javax.swing.JComboBox<String> cboThanhToan;
-    private javax.swing.JComboBox<String> cboTrangThai2;
     private javax.swing.JCheckBox ckbTatCa;
     private com.toedter.calendar.JDateChooser dcsBatDau;
     private com.toedter.calendar.JDateChooser dcsKetThuc;
@@ -1423,8 +1386,6 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
-    private javax.swing.JLabel jLabel27;
-    private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -1453,6 +1414,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JTable jTable3;
     private javax.swing.JTable jTable4;
     private javax.swing.JLabel lblBanHang;
+    private javax.swing.JLabel lblClock;
     private javax.swing.JLabel lblDoiCa;
     private javax.swing.JLabel lblHoaDon;
     private javax.swing.JLabel lblKhachHang;
@@ -1689,12 +1651,17 @@ public class Menu extends javax.swing.JFrame {
     //Khuyến mãi
     DefaultTableModel model = new DefaultTableModel();
 
-    public void fillTableKhuyenMai() {
+    public void fillTableKhuyenMai(String keyword) {
         model = (DefaultTableModel) tblKhuyenMai.getModel();
         model.setRowCount(0);
         try {
-            String keyword = txtTim.getText();
-            List<KhuyenMai> list = dao.selectAll();
+            List<KhuyenMai> list;
+            if(keyword != null){
+                list = dao.selectByKeyword(keyword);
+            }
+            else{
+                list = dao.selectAll();
+            }
             for (KhuyenMai km : list) {
                 Object[] row = {
                     km.getMaKM(),
@@ -1795,18 +1762,19 @@ public class Menu extends javax.swing.JFrame {
         dcsKetThuc.setDate(null);
     }
     
-    void Search(){
-        this.fillTableKhuyenMai();
+    void Search() {
+        this.fillTableKhuyenMai(txtTim.getText());
         this.ClearForm();
         this.rows = -1;
     }
+    
 
     void insert() {
         if (checkDulieu()) {
             KhuyenMai km = getFormKhuyenMai();
             try {
                 dao.insert(km);
-                this.fillTableKhuyenMai();
+                this.fillTableKhuyenMai(null);
                 this.ClearForm();
                 JOptionPane.showMessageDialog(this, "Thêm mới khuyến mãi thành công!");
             } catch (Exception e) {
@@ -1821,7 +1789,7 @@ public class Menu extends javax.swing.JFrame {
             KhuyenMai nv = getFormKhuyenMai();
             try {
                 dao.update(nv);
-                this.fillTableKhuyenMai();
+                this.fillTableKhuyenMai(null);
                 this.ClearForm();
                 JOptionPane.showMessageDialog(this, "Cập nhật thành công!");
             } catch (Exception e) {

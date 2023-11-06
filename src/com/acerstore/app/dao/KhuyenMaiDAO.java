@@ -73,5 +73,9 @@ public class KhuyenMaiDAO extends AcerDAO<KhuyenMai, String>{
         return list;
     }
 
+    public List<KhuyenMai> selectByKeyword(String keyword) {
+        String SQL = "SELECT * FROM KhuyenMai WHERE TenKM LIKE ?";
+        return this.selectBySql(SQL, "%" + keyword + "%");
+    }
     
 }

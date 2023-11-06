@@ -4,20 +4,61 @@
  */
 package com.acerstore.app.view;
 
-import java.awt.Color;
+import com.acerstore.app.controller.Auth;
+import com.acerstore.app.dao.NhanVienDAO;
+import com.acerstore.app.model.NhanVien;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author PC
  */
 public class DangNhap extends javax.swing.JFrame {
-
+    
+    NhanVienDAO dao = new NhanVienDAO();
     /**
      * Creates new form DangNhap
      */     
     public DangNhap() {
         initComponents();
         this.setLocationRelativeTo(null);
+    }
+    
+    void exit() {
+        int check = JOptionPane.showConfirmDialog(this, "Bạn có muốn khỏi app không?",
+                "AcerStore - Thoát ứng dụng", JOptionPane.YES_NO_OPTION);
+        if (check == JOptionPane.YES_OPTION) {
+            System.exit(0);
+        }
+    }
+    
+    void login() {
+        String maNV = txtTenDangNhap.getText();
+        String password = new String(txtMatKhau.getPassword());
+        NhanVien nhanVien = dao.selectById(maNV);
+        if (nhanVien == null) {
+            JOptionPane.showMessageDialog(this, "Sai tên đăng nhập");
+        } else if (!password.equals(nhanVien.getMatKhau())) {
+            JOptionPane.showMessageDialog(this, "Sai mật khẩu");
+        } else {
+            Auth.user = nhanVien;
+            this.dispose();
+            new ManCho(this, rootPaneCheckingEnabled).setVisible(true);
+        }
+    }
+    
+    boolean checkDuLieu(){
+        if(txtTenDangNhap.getText().isEmpty()){
+            JOptionPane.showMessageDialog(this, "Vui lòng nhập tên đăng nhập");
+            txtTenDangNhap.requestFocus();
+            return false;
+        }
+        if(txtTenDangNhap.getText().isEmpty()){
+            JOptionPane.showMessageDialog(this, "Vui lòng nhập mật khẩu");
+            txtMatKhau.requestFocus();
+            return false;
+        }
+        return true;
     }
 
     /**
@@ -33,12 +74,13 @@ public class DangNhap extends javax.swing.JFrame {
         btnDangNhap = new javax.swing.JButton();
         txtTenDangNhap = new javax.swing.JTextField();
         btnThoat = new javax.swing.JButton();
-        txtMatKhau = new javax.swing.JPasswordField();
         lblTenDangNhap = new javax.swing.JLabel();
         lblMatKhau = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        chkShowhide = new javax.swing.JCheckBox();
+        txtMatKhau = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("AcerStore - Đăng nhập");
@@ -53,9 +95,14 @@ public class DangNhap extends javax.swing.JFrame {
         btnDangNhap.setForeground(new java.awt.Color(255, 255, 255));
         btnDangNhap.setText("Đăng nhập");
         btnDangNhap.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        btnDangNhap.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDangNhapActionPerformed(evt);
+            }
+        });
 
         txtTenDangNhap.setFont(new java.awt.Font("Segoe UI Light", 1, 14)); // NOI18N
-        txtTenDangNhap.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        txtTenDangNhap.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         txtTenDangNhap.setMargin(new java.awt.Insets(4, 8, 4, 8));
         txtTenDangNhap.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -73,9 +120,6 @@ public class DangNhap extends javax.swing.JFrame {
                 btnThoatActionPerformed(evt);
             }
         });
-
-        txtMatKhau.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        txtMatKhau.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
 
         lblTenDangNhap.setFont(new java.awt.Font("Segoe UI Semibold", 2, 14)); // NOI18N
         lblTenDangNhap.setText("Tên đăng nhập:");
@@ -107,6 +151,18 @@ public class DangNhap extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(102, 153, 0));
         jLabel2.setText("Liên hệ hỗ trợ");
 
+        chkShowhide.setText("Show password");
+        chkShowhide.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chkShowhideActionPerformed(evt);
+            }
+        });
+
+        txtMatKhau.setFont(new java.awt.Font("Segoe UI Light", 1, 14)); // NOI18N
+        txtMatKhau.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        txtMatKhau.setMinimumSize(new java.awt.Dimension(5, 24));
+        txtMatKhau.setPreferredSize(new java.awt.Dimension(5, 24));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -119,9 +175,7 @@ public class DangNhap extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(txtTenDangNhap)
-                                .addComponent(btnDangNhap, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnThoat, javax.swing.GroupLayout.DEFAULT_SIZE, 274, Short.MAX_VALUE)
-                                .addComponent(txtMatKhau))
+                                .addComponent(btnThoat, javax.swing.GroupLayout.DEFAULT_SIZE, 274, Short.MAX_VALUE))
                             .addComponent(lblTenDangNhap, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblMatKhau, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(40, 40, 40))
@@ -130,7 +184,13 @@ public class DangNhap extends javax.swing.JFrame {
                         .addGap(84, 84, 84))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel2)
-                        .addGap(138, 138, 138))))
+                        .addGap(138, 138, 138))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnDangNhap, javax.swing.GroupLayout.DEFAULT_SIZE, 274, Short.MAX_VALUE)
+                            .addComponent(chkShowhide, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtMatKhau, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -143,11 +203,13 @@ public class DangNhap extends javax.swing.JFrame {
                 .addComponent(txtTenDangNhap, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(lblMatKhau)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txtMatKhau, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtMatKhau, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(chkShowhide)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
                 .addComponent(btnDangNhap, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(12, 12, 12)
                 .addComponent(btnThoat, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(25, 25, 25)
                 .addComponent(jLabel2)
@@ -155,7 +217,7 @@ public class DangNhap extends javax.swing.JFrame {
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnDangNhap, txtMatKhau, txtTenDangNhap});
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnDangNhap, txtTenDangNhap});
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -165,8 +227,23 @@ public class DangNhap extends javax.swing.JFrame {
     }//GEN-LAST:event_txtTenDangNhapActionPerformed
 
     private void btnThoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThoatActionPerformed
-        System.exit(0);
+        this.exit();
     }//GEN-LAST:event_btnThoatActionPerformed
+
+    private void btnDangNhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangNhapActionPerformed
+        // TODO add your handling code here:
+        if(checkDuLieu()){
+            this.login();
+        }
+    }//GEN-LAST:event_btnDangNhapActionPerformed
+
+    private void chkShowhideActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkShowhideActionPerformed
+        if (chkShowhide.isSelected()) {
+            txtMatKhau.setEchoChar((char) 0);
+        } else {
+            txtMatKhau.setEchoChar('*');
+        }
+    }//GEN-LAST:event_chkShowhideActionPerformed
 
     /**
      * @param args the command line arguments
@@ -206,6 +283,7 @@ public class DangNhap extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDangNhap;
     private javax.swing.JButton btnThoat;
+    private javax.swing.JCheckBox chkShowhide;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
