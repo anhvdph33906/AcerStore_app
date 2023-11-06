@@ -14,14 +14,14 @@ public class Menu extends javax.swing.JFrame {
 
     KhuyenMaiDAO dao = new KhuyenMaiDAO();
     int rows = 0;
-    
+
     public Menu() {
         initComponents();
         startClock();
         this.setLocationRelativeTo(null);
         this.fillTableKhuyenMai(null);
     }
-    
+
     void startClock() {
         class TimeClock extends Thread {
 
@@ -55,13 +55,12 @@ public class Menu extends javax.swing.JFrame {
         lblNhanVien = new javax.swing.JLabel();
         lblSanPham = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
+        lblKhuyenMai = new javax.swing.JLabel();
+        lblDoiCa = new javax.swing.JLabel();
         pnlLogo = new javax.swing.JPanel();
         jLabel16 = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
-        lblKhuyenMai = new javax.swing.JLabel();
-        lblDoiCa = new javax.swing.JLabel();
         pnlContainer = new javax.swing.JPanel();
-        pnlTrangChu = new javax.swing.JPanel();
         pnlBanHang = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -145,6 +144,7 @@ public class Menu extends javax.swing.JFrame {
         jScrollPane6 = new javax.swing.JScrollPane();
         jTable4 = new javax.swing.JTable();
         pnlDoiCa = new javax.swing.JPanel();
+        pnlTrangChu = new javax.swing.JPanel();
         lblClock = new javax.swing.JLabel();
         mnuBar = new javax.swing.JMenuBar();
         mnuHeThong = new javax.swing.JMenu();
@@ -159,7 +159,7 @@ public class Menu extends javax.swing.JFrame {
         pnlMenu.setBackground(new java.awt.Color(255, 255, 255));
         pnlMenu.setPreferredSize(new java.awt.Dimension(1213, 775));
 
-        pnlSlideMenu.setBackground(new java.awt.Color(255, 255, 255));
+        pnlSlideMenu.setBackground(new java.awt.Color(102, 255, 102));
         pnlSlideMenu.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         pnlSlideMenu.setForeground(new java.awt.Color(102, 102, 102));
         pnlSlideMenu.setMaximumSize(new java.awt.Dimension(210, 775));
@@ -242,38 +242,6 @@ public class Menu extends javax.swing.JFrame {
 
         jSeparator1.setForeground(new java.awt.Color(102, 102, 102));
 
-        pnlLogo.setBackground(new java.awt.Color(255, 255, 255));
-        pnlLogo.setPreferredSize(new java.awt.Dimension(207, 140));
-        pnlLogo.setRequestFocusEnabled(false);
-        pnlLogo.setVerifyInputWhenFocusTarget(false);
-
-        jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/acerstore/app/icon/acer.jpg"))); // NOI18N
-
-        jSeparator2.setForeground(new java.awt.Color(102, 102, 102));
-
-        javax.swing.GroupLayout pnlLogoLayout = new javax.swing.GroupLayout(pnlLogo);
-        pnlLogo.setLayout(pnlLogoLayout);
-        pnlLogoLayout.setHorizontalGroup(
-            pnlLogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlLogoLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jSeparator2)
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlLogoLayout.createSequentialGroup()
-                .addContainerGap(29, Short.MAX_VALUE)
-                .addComponent(jLabel16)
-                .addGap(28, 28, 28))
-        );
-        pnlLogoLayout.setVerticalGroup(
-            pnlLogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlLogoLayout.createSequentialGroup()
-                .addContainerGap(21, Short.MAX_VALUE)
-                .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-
         lblKhuyenMai.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblKhuyenMai.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblKhuyenMai.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/acerstore/app/icon/loudspeaker.png"))); // NOI18N
@@ -294,6 +262,33 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
+        pnlLogo.setBackground(new java.awt.Color(102, 255, 102));
+        pnlLogo.setPreferredSize(new java.awt.Dimension(207, 140));
+        pnlLogo.setRequestFocusEnabled(false);
+        pnlLogo.setVerifyInputWhenFocusTarget(false);
+
+        jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/acerstore/app/icon/acer.jpg"))); // NOI18N
+
+        javax.swing.GroupLayout pnlLogoLayout = new javax.swing.GroupLayout(pnlLogo);
+        pnlLogo.setLayout(pnlLogoLayout);
+        pnlLogoLayout.setHorizontalGroup(
+            pnlLogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlLogoLayout.createSequentialGroup()
+                .addContainerGap(32, Short.MAX_VALUE)
+                .addComponent(jLabel16)
+                .addGap(25, 25, 25))
+        );
+        pnlLogoLayout.setVerticalGroup(
+            pnlLogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlLogoLayout.createSequentialGroup()
+                .addContainerGap(17, Short.MAX_VALUE)
+                .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        jSeparator2.setBackground(new java.awt.Color(102, 102, 102));
+        jSeparator2.setForeground(new java.awt.Color(102, 102, 102));
+
         javax.swing.GroupLayout pnlSlideMenuLayout = new javax.swing.GroupLayout(pnlSlideMenu);
         pnlSlideMenu.setLayout(pnlSlideMenuLayout);
         pnlSlideMenuLayout.setHorizontalGroup(
@@ -302,19 +297,19 @@ public class Menu extends javax.swing.JFrame {
                 .addGroup(pnlSlideMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblBanHang, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblHoaDon, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(pnlSlideMenuLayout.createSequentialGroup()
-                        .addGroup(pnlSlideMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblDoiCa, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblThongKe, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblKhuyenMai, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(pnlSlideMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(lblDoiCa, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblThongKe, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblKhuyenMai, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(pnlLogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(pnlSlideMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jSeparator2)
                             .addGroup(pnlSlideMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(lblSanPham, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(lblTrangChu, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(lblNhanVien, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(lblKhachHang, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 209, Short.MAX_VALUE)
-                                .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(pnlLogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                                .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap())
         );
 
@@ -323,8 +318,10 @@ public class Menu extends javax.swing.JFrame {
         pnlSlideMenuLayout.setVerticalGroup(
             pnlSlideMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlSlideMenuLayout.createSequentialGroup()
-                .addComponent(pnlLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(pnlLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(1, 1, 1)
                 .addComponent(lblTrangChu, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(lblBanHang, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -351,19 +348,6 @@ public class Menu extends javax.swing.JFrame {
 
         pnlContainer.setPreferredSize(new java.awt.Dimension(1030, 717));
         pnlContainer.setLayout(new java.awt.CardLayout());
-
-        javax.swing.GroupLayout pnlTrangChuLayout = new javax.swing.GroupLayout(pnlTrangChu);
-        pnlTrangChu.setLayout(pnlTrangChuLayout);
-        pnlTrangChuLayout.setHorizontalGroup(
-            pnlTrangChuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1030, Short.MAX_VALUE)
-        );
-        pnlTrangChuLayout.setVerticalGroup(
-            pnlTrangChuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 717, Short.MAX_VALUE)
-        );
-
-        pnlContainer.add(pnlTrangChu, "card2");
 
         pnlBanHang.setBackground(new java.awt.Color(255, 255, 255));
         pnlBanHang.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -1127,6 +1111,19 @@ public class Menu extends javax.swing.JFrame {
 
         pnlContainer.add(pnlDoiCa, "card10");
 
+        javax.swing.GroupLayout pnlTrangChuLayout = new javax.swing.GroupLayout(pnlTrangChu);
+        pnlTrangChu.setLayout(pnlTrangChuLayout);
+        pnlTrangChuLayout.setHorizontalGroup(
+            pnlTrangChuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1030, Short.MAX_VALUE)
+        );
+        pnlTrangChuLayout.setVerticalGroup(
+            pnlTrangChuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 717, Short.MAX_VALUE)
+        );
+
+        pnlContainer.add(pnlTrangChu, "card2");
+
         lblClock.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblClock.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/acerstore/app/icon/clock.png"))); // NOI18N
 
@@ -1136,10 +1133,12 @@ public class Menu extends javax.swing.JFrame {
             pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlMenuLayout.createSequentialGroup()
                 .addComponent(pnlSlideMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(pnlContainer, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 1030, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlMenuLayout.createSequentialGroup()
+                .addGroup(pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(pnlMenuLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(pnlContainer, javax.swing.GroupLayout.PREFERRED_SIZE, 1030, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(pnlMenuLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(lblClock, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())))
         );
@@ -1151,7 +1150,7 @@ public class Menu extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlMenuLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(lblClock)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(17, 17, 17)
                         .addComponent(pnlContainer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
@@ -1647,7 +1646,7 @@ public class Menu extends javax.swing.JFrame {
             lblThongKe.setForeground(Color.black);
         }
     }
-    
+
     //Khuyến mãi
     DefaultTableModel model = new DefaultTableModel();
 
@@ -1656,10 +1655,9 @@ public class Menu extends javax.swing.JFrame {
         model.setRowCount(0);
         try {
             List<KhuyenMai> list;
-            if(keyword != null){
+            if (keyword != null) {
                 list = dao.selectByKeyword(keyword);
-            }
-            else{
+            } else {
                 list = dao.selectAll();
             }
             for (KhuyenMai km : list) {
@@ -1670,7 +1668,7 @@ public class Menu extends javax.swing.JFrame {
                     km.getTriGia(),
                     km.getThoiGianBatDau(),
                     km.getThoiGianKetThuc(),
-                    km.isTrangThai() ? "Đang áp dụng" : "Ngừng áp dụng"
+                    km.getTrangThai()
                 };
                 model.addRow(row);
             }
@@ -1743,12 +1741,15 @@ public class Menu extends javax.swing.JFrame {
         km.setThoiGianBatDau(dcsBatDau.getDate());
         km.setThoiGianKetThuc(dcsKetThuc.getDate());
         km.setTriGia(Double.parseDouble(txtGia.getText()));
-        Date selectDate = dcsKetThuc.getDate();
+        Date selectDateBD = dcsBatDau.getDate();
+        Date selectDateKT = dcsKetThuc.getDate();
         Date currentDate = new Date();
-        if (selectDate != null && selectDate.after(currentDate)) {
-            km.setTrangThai(true);
-        } else {
-            km.setTrangThai(false);
+        if (currentDate.after(selectDateKT)) {
+            km.setTrangThai("Ngừng áp dụng");
+        }else if(currentDate.before(selectDateBD)){
+            km.setTrangThai("Sắp diễn ra");
+        }else{
+            km.setTrangThai("Đang áp dụng");
         }
         return km;
     }
@@ -1761,13 +1762,12 @@ public class Menu extends javax.swing.JFrame {
         dcsBatDau.setDate(null);
         dcsKetThuc.setDate(null);
     }
-    
+
     void Search() {
         this.fillTableKhuyenMai(txtTim.getText());
         this.ClearForm();
         this.rows = -1;
     }
-    
 
     void insert() {
         if (checkDulieu()) {

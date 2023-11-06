@@ -14,12 +14,12 @@ public class KhuyenMai {
     private String maKM, tenKM, kieuKM;
     private double triGia;
     private Date thoiGianBatDau, thoiGianKetThuc;
-    private boolean trangThai;
+    private String trangThai;
 
     public KhuyenMai() {
     }
 
-    public KhuyenMai(String maKM, String tenKM, String kieuKM, double triGia, Date thoiGianBatDau, Date thoiGianKetThuc, boolean trangThai) {
+    public KhuyenMai(String maKM, String tenKM, String kieuKM, double triGia, Date thoiGianBatDau, Date thoiGianKetThuc, String trangThai) {
         this.maKM = maKM;
         this.tenKM = tenKM;
         this.kieuKM = kieuKM;
@@ -28,6 +28,8 @@ public class KhuyenMai {
         this.thoiGianKetThuc = thoiGianKetThuc;
         this.trangThai = trangThai;
     }
+
+    
 
     public String getMaKM() {
         return maKM;
@@ -77,13 +79,15 @@ public class KhuyenMai {
         this.kieuKM = kieuKM;
     }
 
-    public boolean isTrangThai() {
+    public String getTrangThai() {
         return trangThai;
     }
 
-    public void setTrangThai(boolean trangThai) {
+    public void setTrangThai(String trangThai) {
         this.trangThai = trangThai;
     }
+
+    
 
     @Override
     public String toString() {

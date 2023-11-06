@@ -23,12 +23,12 @@ public class KhuyenMaiDAO extends AcerDAO<KhuyenMai, String>{
 
     @Override
     public void insert(KhuyenMai entity) {
-        DBConnect.executeUpdate(INSERT_SQL, entity.getMaKM(), entity.getTenKM(), entity.getKieuKM(), entity.getTriGia(), entity.getThoiGianBatDau(), entity.getThoiGianKetThuc(), entity.isTrangThai());
+        DBConnect.executeUpdate(INSERT_SQL, entity.getMaKM(), entity.getTenKM(), entity.getKieuKM(), entity.getTriGia(), entity.getThoiGianBatDau(), entity.getThoiGianKetThuc(), entity.getTrangThai());
     }
 
     @Override
     public void update(KhuyenMai entity) {
-        DBConnect.executeUpdate(UPDATE_SQL, entity.getTenKM(), entity.getKieuKM(), entity.getTriGia(), entity.getThoiGianBatDau(), entity.getThoiGianKetThuc(), entity.isTrangThai(), entity.getMaKM());
+        DBConnect.executeUpdate(UPDATE_SQL, entity.getTenKM(), entity.getKieuKM(), entity.getTriGia(), entity.getThoiGianBatDau(), entity.getThoiGianKetThuc(), entity.getTrangThai(), entity.getMaKM());
     }
 
     @Override
@@ -63,7 +63,7 @@ public class KhuyenMaiDAO extends AcerDAO<KhuyenMai, String>{
                 entity.setTriGia(rs.getDouble("TriGia"));
                 entity.setThoiGianBatDau(rs.getDate("TGBD"));
                 entity.setThoiGianKetThuc(rs.getDate("TGKT"));
-                entity.setTrangThai(rs.getBoolean("TrangThai"));
+                entity.setTrangThai(rs.getString("TrangThai"));
                 list.add(entity);
             }
         } catch (Exception e) {
