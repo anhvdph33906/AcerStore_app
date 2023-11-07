@@ -11,7 +11,7 @@ package com.acerstore.app.model;
 public class NhanVien {
     private String maNV, ten, matKhau;
     private int soDienThoai;
-    private boolean vaiTro = false;
+    private boolean vaiTro;
 
     public NhanVien() {
     }
