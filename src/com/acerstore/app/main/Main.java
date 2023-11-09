@@ -178,7 +178,7 @@ public class Main extends javax.swing.JFrame {
                 .addGroup(pnlContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(scrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(pnlContainerLayout.createSequentialGroup()
-                        .addComponent(pnlControl, javax.swing.GroupLayout.DEFAULT_SIZE, 754, Short.MAX_VALUE)
+                        .addComponent(pnlControl, javax.swing.GroupLayout.PREFERRED_SIZE, 754, Short.MAX_VALUE)
                         .addGap(3, 3, 3))))
         );
 
