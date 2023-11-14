@@ -1,130 +1,52 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.acerstore.app.dao;
-
-import Interfaces.SanPhamInterfaces;
 import com.acerstore.app.database.DBConnect;
-import com.acerstore.app.database.DBConnection;
-import com.acerstore.app.model.SanPhamNew;
-import com.acerstore.app.view.SanPham;
-import java.awt.Image;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.InputStream;
+import com.acerstore.app.model.SanPham;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import javax.imageio.ImageIO;
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
-/**
- *
- * @author ASUS
- */
-public class SanPhamDao implements SanPhamInterfaces{
-    Connection con = null;
-    PreparedStatement ps = null;
-    ResultSet rs = null;
-    String sql =null;
-    public List<SanPhamNew> getAll(){
-        List<SanPhamNew> sp = new ArrayList<>();
-        SanPhamNew s = null;
-        sql = "select MaSP,ten,XuatXu,Ngayramat,TrangThai,HinhAnh from SanPham ";
-        try {
-            con = DBConnection.getConnection();
-            ps = con.prepareStatement(sql);
-            rs = ps.executeQuery();
-            while(rs.next()){
-                s = new SanPhamNew(rs.getString(1), rs.getString(2), rs.getString(3), rs.getDate(4),rs.getBoolean(5), rs.getString(6));
-                sp.add(s);
-            }
-            return sp;
-        } catch (Exception e) {
-            e.getMessage();
-            return null;
-        }
-    }
-    public List<SanPhamNew> getAllMaDM(String maDm){
-        List<SanPhamNew> sp = new ArrayList<>();
-        SanPhamNew s = null;
-        sql = "select * from SanPham where MaDM=?";
-        try {
-            con = DBConnection.getConnection();
-            ps = con.prepareStatement(sql);
-            ps.setObject(1, maDm);
-            rs = ps.executeQuery();
-            while(rs.next()){
-                s = new SanPhamNew(rs.getString(1), rs.getString(2), rs.getString(3), rs.getDate(4),rs.getBoolean(5), rs.getString(6));
-                sp.add(s);
-            }
-            return sp;
-        } catch (Exception e) {
-            e.getMessage();
-            return null;
-        }
-    }
-    public SanPhamNew LikeMa(String maSP){
-        SanPhamNew s = null;
-        sql = "select MaSP,ten,XuatXu,Ngayramat,MoTa,TrangThai,HinhAnh from SanPham where MaSP = ?";
-        try {
-            con = DBConnection.getConnection();
-            ps = con.prepareStatement(sql);
-            ps.setObject(1, maSP);
-            rs = ps.executeQuery();
-            while(rs.next()){
-                s = new SanPhamNew(rs.getString(1), rs.getString(2), rs.getString(3), rs.getDate(4),rs.getBoolean(5), rs.getString(6));
-            }
-            return s;
-        } catch (Exception e) {
-            e.getMessage();
-            return null;
-        }
-    } 
-    public List<SanPhamNew> getFind(String MaSP){
-        List<SanPhamNew> sp = new ArrayList<>();
-        SanPhamNew s = null;
-        sql = "select * from SanPham where MaSP like '%?%'";
-        try {
-            con = DBConnection.getConnection();
-            ps = con.prepareStatement(sql);
-            ps.setObject(1, MaSP);
-            rs = ps.executeQuery();
-            while(rs.next()){
-                s = new SanPhamNew(rs.getString(1), rs.getString(2), rs.getString(3), rs.getDate(4),rs.getBoolean(5), rs.getString(6));
-                sp.add(s);
-            }
-            return sp;
-        } catch (Exception e) {
-            e.getMessage();
-            return null;
-        }
+public class SanPhamDAO extends AcerDAO<SanPham, String> {
+    String SELECT_ALL_SQL = "SELECT MaSP, TenSP FROM SanPham";
+
+    @Override
+    public void insert(SanPham e) {
+
     }
 
     @Override
-    public int add(SanPhamNew sp) {
-        sql ="insert into SanPham(MaSP,ten,XuatXu,Ngayramat,TrangThai,HinhAnh) values (?,?,?,?,?,?)";
-        try {
-            con = DBConnection.getConnection();
-            ps = con.prepareStatement(sql);
-            ps.setObject(1, sp.getMaSP());
-            ps.setObject(2, sp.getTenSP());
-            ps.setObject(3, sp.getXuatXu());
-            ps.setObject(4, sp.getNgayRaMat());
-            ps.setObject(5, sp.isTrangThai());
-            ps.setObject(6, sp.getHinhAnh());
-            return ps.executeUpdate();
-        } catch (Exception e) {
-            e.getMessage();
-            return 0;
-        }
+    public void update(SanPham e) {
+
     }
 
     @Override
-    public int update(SanPhamNew s, String maSP) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void delete(String id) {
+
     }
-    
+
+    @Override
+    public List<SanPham> selectAll() {
+        return selectBySql(SELECT_ALL_SQL);
+    }
+
+    @Override
+    public SanPham selectById(String id) {
+        return null;
+    }
+
+    @Override
+    public List<SanPham> selectBySql(String sql, Object... args) {
+        List<SanPham> lstSanPham = new ArrayList<>();
+        try {
+            ResultSet rs = DBConnect.executeQuery(sql, args);
+            while(rs.next()) {
+                SanPham sp = new SanPham();
+                sp.setMaSP(rs.getString(1));
+                sp.setTenSP(rs.getString(2));
+                lstSanPham.add(sp);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return lstSanPham;
+    }
 }

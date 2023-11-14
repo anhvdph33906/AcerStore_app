@@ -5,7 +5,7 @@ import java.awt.Component;
 import com.acerstore.app.view.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JOptionPane;
+import javax.swing.*;
 
 public class Main extends javax.swing.JFrame {
 
@@ -17,7 +17,7 @@ public class Main extends javax.swing.JFrame {
         setForm();
         menu.setEvent(new MenuEvent() {
             @Override
-            public void selected(int index, int subIndex) { 
+            public void selected(int index, int subIndex) {
                 if (index == 0) {
                     trangChu.setVisible(true);
                     banHang.setVisible(false);
@@ -98,6 +98,15 @@ public class Main extends javax.swing.JFrame {
                     sanPham.setVisible(false);
                     thongKe.setVisible(true);
                 }
+                if (index == 8 && subIndex == 1) {
+                    int rs = JOptionPane.showConfirmDialog(rootPane, "Bạn có muốn đăng xuất tài khoản?",
+                            "Acer Store - Đăng xuất", JOptionPane.YES_NO_OPTION);
+                    if (rs == JOptionPane.YES_OPTION) {
+                        setVisible(false);
+                        new DangNhap().setVisible(true);
+                    }
+
+                }
                 if (index == 10) {
                     int exit = JOptionPane.showConfirmDialog(rootPane, "Bạn có muốn thoát?",
                             "Acer Store - Thoát", JOptionPane.YES_NO_OPTION);
@@ -131,13 +140,13 @@ public class Main extends javax.swing.JFrame {
         header = new com.acerstore.app.view.Header();
         pnlControl = new javax.swing.JPanel();
         trangChu = new com.acerstore.app.view.TrangChu();
-        banHang = new com.acerstore.app.view.BanHang();
         nhanVien = new com.acerstore.app.view.NhanVien();
         hoaDon = new com.acerstore.app.view.HoaDon();
         khachHang = new com.acerstore.app.view.KhachHang();
         khuyenMai = new com.acerstore.app.view.KhuyenMai();
         sanPham = new com.acerstore.app.view.SanPham();
         thongKe = new com.acerstore.app.view.ThongKe();
+        banHang = new com.acerstore.app.view.BanHang();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -153,13 +162,13 @@ public class Main extends javax.swing.JFrame {
         pnlControl.setPreferredSize(new java.awt.Dimension(1272, 757));
         pnlControl.setLayout(new java.awt.CardLayout());
         pnlControl.add(trangChu, "card9");
-        pnlControl.add(banHang, "card3");
         pnlControl.add(nhanVien, "card4");
         pnlControl.add(hoaDon, "card5");
         pnlControl.add(khachHang, "card6");
         pnlControl.add(khuyenMai, "card7");
         pnlControl.add(sanPham, "card8");
         pnlControl.add(thongKe, "card9");
+        pnlControl.add(banHang, "card9");
 
         javax.swing.GroupLayout pnlContainerLayout = new javax.swing.GroupLayout(pnlContainer);
         pnlContainer.setLayout(pnlContainerLayout);
@@ -178,7 +187,7 @@ public class Main extends javax.swing.JFrame {
                 .addGroup(pnlContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(scrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(pnlContainerLayout.createSequentialGroup()
-                        .addComponent(pnlControl, javax.swing.GroupLayout.PREFERRED_SIZE, 754, Short.MAX_VALUE)
+                        .addComponent(pnlControl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(3, 3, 3))))
         );
 
@@ -190,7 +199,7 @@ public class Main extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlContainer, javax.swing.GroupLayout.DEFAULT_SIZE, 817, Short.MAX_VALUE)
+            .addComponent(pnlContainer, javax.swing.GroupLayout.DEFAULT_SIZE, 820, Short.MAX_VALUE)
         );
 
         pack();
@@ -224,7 +233,7 @@ public class Main extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
+        SwingUtilities.invokeLater(new Runnable() {
             public void run() {
                 new Main().setVisible(true);
             }
@@ -249,7 +258,5 @@ public class Main extends javax.swing.JFrame {
 
     private void setForm() {
         this.setLocationRelativeTo(null);
-        this.setResizable(false);
-        this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
     }
 }
