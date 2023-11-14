@@ -463,7 +463,7 @@ DefaultTableModel code = new DefaultTableModel();
         load = fi.getAbsolutePath();
         try {
             lblHinhAnh.setIcon(LoadImage(String.valueOf(load)));
-            JOptionPane.showMessageDialog(this, "s");
+            JOptionPane.showMessageDialog(this, "update anh thanh cong");
 
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, "chon anh");

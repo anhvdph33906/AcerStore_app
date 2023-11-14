@@ -5,7 +5,7 @@
 package com.acerstore.app.dao;
 
 import Interfaces.SanPhamInterfaces;
-import com.acerstore.app.database.DBConnect;
+import com.acerstore.app.database.DBConnection;
 import com.acerstore.app.database.DBConnection;
 import com.acerstore.app.model.SanPhamNew;
 import com.acerstore.app.view.SanPham;
