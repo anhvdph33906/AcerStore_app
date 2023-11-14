@@ -17,7 +17,7 @@ public class Main extends javax.swing.JFrame {
         setForm();
         menu.setEvent(new MenuEvent() {
             @Override
-            public void selected(int index, int subIndex) {
+            public void selected(int index, int subIndex) { 
                 if (index == 0) {
                     trangChu.setVisible(true);
                     banHang.setVisible(false);

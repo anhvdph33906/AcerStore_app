@@ -2,6 +2,11 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/F:/SD_18319_Java3/bai_tap/AcerStore_app/src/com/acerstore/app/model/SanPhamNew.java</file>
+            <file>file:/F:/SD_18319_Java3/bai_tap/AcerStore_app/src/com/acerstore/app/view/SanPham.java</file>
+            <file>file:/F:/SD_18319_Java3/bai_tap/AcerStore_app/src/com/acerstore/app/dao/SanPhamDao.java</file>
+            <file>file:/F:/SD_18319_Java3/bai_tap/AcerStore_app/src/com/acerstore/app/main/Main.java</file>
+        </group>
     </open-files>
 </project-private>
