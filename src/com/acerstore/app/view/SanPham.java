@@ -466,6 +466,7 @@ public class SanPham extends javax.swing.JPanel {
 
     private void btnImageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImageActionPerformed
         // TODO add your handling code here:
+<<<<<<< HEAD
 //        JFileChooser ch = new JFileChooser("F:\\anh");
 //        ch.showOpenDialog(null);
 //        File fi = ch.getSelectedFile();
@@ -478,6 +479,20 @@ public class SanPham extends javax.swing.JPanel {
 //            JOptionPane.showMessageDialog(this, "chon anh");
 //            System.out.println(load);
 //        }
+=======
+        JFileChooser ch = new JFileChooser("F:\\anh");
+        ch.showOpenDialog(null);
+        File fi = ch.getSelectedFile();
+        load = fi.getAbsolutePath();
+        try {
+            lblHinhAnh.setIcon(LoadImage(String.valueOf(load)));
+            JOptionPane.showMessageDialog(this, "update anh thanh cong");
+
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "chon anh");
+            System.out.println(load);
+        }
+>>>>>>> fbd861e5918e2871dcef5689e0511e3302d1a4e1
     }//GEN-LAST:event_btnImageActionPerformed
 
     private void btnXemSPCTMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnXemSPCTMouseClicked
