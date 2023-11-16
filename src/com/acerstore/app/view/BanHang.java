@@ -4,8 +4,7 @@
  */
 package com.acerstore.app.view;
 
-import com.acerstore.app.dao.SanPhamDAO;
-import com.acerstore.app.model.SanPham;
+
 
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
@@ -18,10 +17,7 @@ import java.util.List;
  */
 public class BanHang extends javax.swing.JPanel {
 
-    DefaultTableModel model = new DefaultTableModel();
-    SanPhamDAO dao = new SanPhamDAO();
-    List<SanPham> lstSP = new ArrayList<SanPham>();
-    int index = -1;
+
 
     public BanHang() {
         initComponents();
@@ -656,12 +652,7 @@ public class BanHang extends javax.swing.JPanel {
     }//GEN-LAST:event_btnTaoHDActionPerformed
 
     private void fillToTable() {
-        model = (DefaultTableModel) tblSanPham.getModel();
-        model.setRowCount(0);
-        lstSP = dao.selectAll();
-        for (SanPham sp: lstSP) {
-            model.addRow(sp.toDataRow());
-        }
+
      }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
