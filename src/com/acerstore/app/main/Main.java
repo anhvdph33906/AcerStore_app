@@ -144,7 +144,6 @@ public class Main extends javax.swing.JFrame {
         hoaDon = new com.acerstore.app.view.HoaDon();
         khachHang = new com.acerstore.app.view.KhachHang();
         khuyenMai = new com.acerstore.app.view.KhuyenMai();
-        sanPham = new com.acerstore.app.view.SanPham();
         thongKe = new com.acerstore.app.view.ThongKe();
         banHang = new com.acerstore.app.view.BanHang();
 
@@ -166,7 +165,6 @@ public class Main extends javax.swing.JFrame {
         pnlControl.add(hoaDon, "card5");
         pnlControl.add(khachHang, "card6");
         pnlControl.add(khuyenMai, "card7");
-        pnlControl.add(sanPham, "card8");
         pnlControl.add(thongKe, "card9");
         pnlControl.add(banHang, "card9");
 
@@ -250,7 +248,6 @@ public class Main extends javax.swing.JFrame {
     private com.acerstore.app.view.NhanVien nhanVien;
     private javax.swing.JPanel pnlContainer;
     private javax.swing.JPanel pnlControl;
-    private com.acerstore.app.view.SanPham sanPham;
     private com.acerstore.app.swing.ScrollPane scrollPane1;
     private com.acerstore.app.view.ThongKe thongKe;
     private com.acerstore.app.view.TrangChu trangChu;

@@ -6,7 +6,11 @@ import java.sql.SQLException;
 
 public class DBConnect {
     private static String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
+<<<<<<< HEAD
     private static String dburl="jdbc:sqlserver://localhost\\sieu-ngau-09\\SQLEXPRESS:1433;databaseName=AcerStore;encrypt=true;trustServerCertificate=true;";
+=======
+    private static String dburl="jdbc:sqlserver://localhost\\sieu-ngau-09\\SQLEXPRESS:1433;databaseName=AcerStores;encrypt=true;trustServerCertificate=true;";
+>>>>>>> c022217510cf5c213003578847bab7db6e2ce0dd
     private static String user="sa";
     private static String pass="28052004";
      
