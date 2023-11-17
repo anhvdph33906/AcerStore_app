@@ -23,7 +23,7 @@ public class Main extends javax.swing.JFrame {
                     banHang.setVisible(false);
                     hoaDon.setVisible(false);
                     khachHang.setVisible(false);
-                    khuyenMai.setVisible(false);
+                    khuyenMai1.setVisible(false);
                     nhanVien.setVisible(false);
                     sanPham.setVisible(false);
                     thongKe.setVisible(false);
@@ -33,7 +33,7 @@ public class Main extends javax.swing.JFrame {
                     banHang.setVisible(true);
                     hoaDon.setVisible(false);
                     khachHang.setVisible(false);
-                    khuyenMai.setVisible(false);
+                    khuyenMai1.setVisible(false);
                     nhanVien.setVisible(false);
                     sanPham.setVisible(false);
                     thongKe.setVisible(false);
@@ -43,7 +43,7 @@ public class Main extends javax.swing.JFrame {
                     banHang.setVisible(false);
                     hoaDon.setVisible(true);
                     khachHang.setVisible(false);
-                    khuyenMai.setVisible(false);
+                    khuyenMai1.setVisible(false);
                     nhanVien.setVisible(false);
                     sanPham.setVisible(false);
                     thongKe.setVisible(false);
@@ -53,7 +53,7 @@ public class Main extends javax.swing.JFrame {
                     banHang.setVisible(false);
                     hoaDon.setVisible(false);
                     khachHang.setVisible(false);
-                    khuyenMai.setVisible(false);
+                    khuyenMai1.setVisible(false);
                     nhanVien.setVisible(false);
                     sanPham.setVisible(true);
                     thongKe.setVisible(false);
@@ -63,7 +63,7 @@ public class Main extends javax.swing.JFrame {
                     banHang.setVisible(false);
                     hoaDon.setVisible(false);
                     khachHang.setVisible(false);
-                    khuyenMai.setVisible(true);
+                    khuyenMai1.setVisible(true);
                     nhanVien.setVisible(false);
                     sanPham.setVisible(false);
                     thongKe.setVisible(false);
@@ -73,7 +73,7 @@ public class Main extends javax.swing.JFrame {
                     banHang.setVisible(false);
                     hoaDon.setVisible(false);
                     khachHang.setVisible(true);
-                    khuyenMai.setVisible(false);
+                    khuyenMai1.setVisible(false);
                     nhanVien.setVisible(false);
                     sanPham.setVisible(false);
                     thongKe.setVisible(false);
@@ -83,7 +83,7 @@ public class Main extends javax.swing.JFrame {
                     banHang.setVisible(false);
                     hoaDon.setVisible(false);
                     khachHang.setVisible(false);
-                    khuyenMai.setVisible(false);
+                    khuyenMai1.setVisible(false);
                     nhanVien.setVisible(true);
                     sanPham.setVisible(false);
                     thongKe.setVisible(false);
@@ -93,7 +93,7 @@ public class Main extends javax.swing.JFrame {
                     banHang.setVisible(false);
                     hoaDon.setVisible(false);
                     khachHang.setVisible(false);
-                    khuyenMai.setVisible(false);
+                    khuyenMai1.setVisible(false);
                     nhanVien.setVisible(false);
                     sanPham.setVisible(false);
                     thongKe.setVisible(true);
@@ -135,9 +135,9 @@ public class Main extends javax.swing.JFrame {
         nhanVien = new com.acerstore.app.view.NhanVien();
         hoaDon = new com.acerstore.app.view.HoaDon();
         khachHang = new com.acerstore.app.view.KhachHang();
-        khuyenMai = new com.acerstore.app.view.KhuyenMai();
         sanPham = new com.acerstore.app.view.SanPham();
         thongKe = new com.acerstore.app.view.ThongKe();
+        khuyenMai1 = new com.acerstore.app.view.KhuyenMai();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -157,9 +157,9 @@ public class Main extends javax.swing.JFrame {
         pnlControl.add(nhanVien, "card4");
         pnlControl.add(hoaDon, "card5");
         pnlControl.add(khachHang, "card6");
-        pnlControl.add(khuyenMai, "card7");
         pnlControl.add(sanPham, "card8");
         pnlControl.add(thongKe, "card9");
+        pnlControl.add(khuyenMai1, "card9");
 
         javax.swing.GroupLayout pnlContainerLayout = new javax.swing.GroupLayout(pnlContainer);
         pnlContainer.setLayout(pnlContainerLayout);
@@ -236,7 +236,7 @@ public class Main extends javax.swing.JFrame {
     private com.acerstore.app.view.Header header;
     private com.acerstore.app.view.HoaDon hoaDon;
     private com.acerstore.app.view.KhachHang khachHang;
-    private com.acerstore.app.view.KhuyenMai khuyenMai;
+    private com.acerstore.app.view.KhuyenMai khuyenMai1;
     private com.acerstore.app.menu.Menu menu;
     private com.acerstore.app.view.NhanVien nhanVien;
     private javax.swing.JPanel pnlContainer;
