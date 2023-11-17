@@ -17,7 +17,10 @@ import java.util.List;
  */
 public class BanHang extends javax.swing.JPanel {
 
+<<<<<<< HEAD
+=======
 
+>>>>>>> c022217510cf5c213003578847bab7db6e2ce0dd
 
     public BanHang() {
         initComponents();
@@ -652,7 +655,10 @@ public class BanHang extends javax.swing.JPanel {
     }//GEN-LAST:event_btnTaoHDActionPerformed
 
     private void fillToTable() {
+<<<<<<< HEAD
+=======
 
+>>>>>>> c022217510cf5c213003578847bab7db6e2ce0dd
      }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

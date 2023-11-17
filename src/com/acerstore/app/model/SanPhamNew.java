@@ -82,9 +82,13 @@ public class SanPhamNew {
     public String toString() {
         return "SanPhamNew{" + "maSP=" + maSP + ", tenSP=" + tenSP + ", xuatXu=" + xuatXu + ", ngayRaMat=" + ngayRaMat + ", trangThai=" + trangThai + ", hinhAnh=" + hinhAnh + '}';
     }
+<<<<<<< HEAD
+ 
+=======
     public Object[] toDataSP(){
         return new Object[]{
             this.maSP,this.tenSP,this.xuatXu,this.ngayRaMat,this.trangThai,this.hinhAnh
         };
     }
+>>>>>>> c022217510cf5c213003578847bab7db6e2ce0dd
 }
